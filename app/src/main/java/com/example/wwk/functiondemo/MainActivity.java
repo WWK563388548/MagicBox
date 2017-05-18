@@ -1,13 +1,14 @@
 package com.example.wwk.functiondemo;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.example.wwk.functiondemo.fragment.FragmentDemoFour;
@@ -62,10 +63,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mFloatingButton = (FloatingActionButton) findViewById(R.id.floating_action_button);
         mFloatingButton.setOnClickListener(this);
+       // hide when it's default
+        mFloatingButton.setVisibility(View.GONE);
         mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
         // Pre-load
         mViewPager.setOffscreenPageLimit(mFragment.size());
+
+       // Monitor slide
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Log.i("TAG_LOG", "Position" + position);
+                if (position == 0) {
+                    mFloatingButton.setVisibility(View.GONE);
+                } else {
+                    mFloatingButton.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
 
