@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FunctionDemo</string>
+    <string name="fragment_demo_one_text">Fragment Demo One</string>
+    <string name="fragment_demo_two_text">Fragment Demo Two</string>
+    <string name="fragment_demo_three_text">Fragment Demo Three</string>
+    <string name="fragment_demo_four_text">Fragment Demo Four</string>
+</resources>
