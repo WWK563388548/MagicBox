@@ -8,4 +8,6 @@
     <string name="title_2">Demo 2</string>
     <string name="title_3">Demo 3</string>
     <string name="title_4">Demo 4</string>
+    <string name="settings_text_view">Settings</string>
+    <string name="Settings_label">Settings</string>
 </resources>
