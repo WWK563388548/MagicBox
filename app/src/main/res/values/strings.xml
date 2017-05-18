@@ -4,4 +4,8 @@
     <string name="fragment_demo_two_text">Fragment Demo Two</string>
     <string name="fragment_demo_three_text">Fragment Demo Three</string>
     <string name="fragment_demo_four_text">Fragment Demo Four</string>
+    <string name="title_1">Demo 1</string>
+    <string name="title_2">Demo 2</string>
+    <string name="title_3">Demo 3</string>
+    <string name="title_4">Demo 4</string>
 </resources>

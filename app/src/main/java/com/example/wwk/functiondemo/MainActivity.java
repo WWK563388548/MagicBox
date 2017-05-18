@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // remove shadow of action bar
+        getSupportActionBar().setElevation(0);
+
         initializeData();
         initializeView();
     }
@@ -35,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
     private void initializeData() {
         mTitle = new ArrayList<>();
 
-        mTitle.add("Demo 1");
-        mTitle.add("Demo 2");
-        mTitle.add("Demo 3");
-        mTitle.add("Demo 4");
+        mTitle.add(getString(R.string.title_1));
+        mTitle.add(getString(R.string.title_2));
+        mTitle.add(getString(R.string.title_3));
+        mTitle.add(getString(R.string.title_4));
 
         mFragment = new ArrayList<>();
 
@@ -53,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
         mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
+        // Pre-load
+        mViewPager.setOffscreenPageLimit(mFragment.size());
 
         mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
 
