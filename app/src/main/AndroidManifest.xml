@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.LaunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,6 +20,12 @@
         <activity
             android:name=".ui.SettingsActivity"
             android:label="@string/Settings_label"/>
+        <!-- Main -->
+        <activity
+            android:name=".MainActivity"/>
+        <!-- Guide page -->
+        <activity
+            android:name=".ui.GuideActivity"/>
     </application>
 
 </manifest>
