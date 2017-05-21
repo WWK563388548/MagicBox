@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.wwk.functiondemo.MainActivity;
 import com.example.wwk.functiondemo.R;
 import com.example.wwk.functiondemo.utils.SharedPreferencesUtils;
+import com.example.wwk.functiondemo.utils.UtilTools;
 
 /**
  * Created by wwk on 17/5/21.
@@ -56,6 +57,7 @@ public class LaunchActivity extends AppCompatActivity{
         // Delay 2 second when launching the interface
         handler.sendEmptyMessageDelayed(HANDLER_LAUNCH, 2000);
         mLaunchView = (TextView) findViewById(R.id.launch_view);
+        UtilTools.setFont(this, mLaunchView);
     }
 
     // Estimate app that is it being launched for the first time
