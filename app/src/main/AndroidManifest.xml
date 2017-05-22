@@ -27,7 +27,8 @@
             android:name=".MainActivity"/>
         <!-- Guide page -->
         <activity
-            android:name=".ui.GuideActivity"/>
+            android:name=".ui.GuideActivity"
+            android:theme="@style/NoActivityFullScreen"/>
     </application>
 
 </manifest>
