@@ -8,10 +8,11 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher_round" />
+        android:src="@mipmap/ic_launcher_round"
+        android:layout_marginBottom="48dp"/>
 
     <TextView
-        android:text="Guide page two"
+        android:text="@string/advertisement_2"
         android:textSize="48sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

@@ -7,7 +7,6 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import com.example.wwk.functiondemo.MainActivity;
 import com.example.wwk.functiondemo.R;
 import com.example.wwk.functiondemo.utils.SharedPreferencesUtils;
 import com.example.wwk.functiondemo.utils.UtilTools;
@@ -36,7 +35,7 @@ public class LaunchActivity extends AppCompatActivity{
                     if (isFirst()) {
                         startActivity(new Intent(LaunchActivity.this, GuideActivity.class));
                     } else {
-                        startActivity(new Intent(LaunchActivity.this, MainActivity.class));
+                        startActivity(new Intent(LaunchActivity.this, GuideActivity.class));
                     }
                     finish();
                     break;

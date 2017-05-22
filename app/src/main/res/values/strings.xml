@@ -11,4 +11,8 @@
     <string name="settings_text_view">Settings</string>
     <string name="Settings_label">Settings</string>
     <string name="guide_page">Guide Page</string>
+    <string name="advertisement_1">Advertisement 1</string>
+    <string name="advertisement_3">Advertisement 3</string>
+    <string name="advertisement_2">Advertisement 2</string>
+    <string name="button_start">Start</string>
 </resources>

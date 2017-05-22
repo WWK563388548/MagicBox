@@ -8,12 +8,22 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher_round" />
+        android:src="@mipmap/ic_launcher_round"
+        android:layout_marginBottom="48dp"/>
 
     <TextView
-        android:text="Guide page three"
+        android:text="@string/advertisement_3"
         android:textSize="48sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <Button
+        android:background="@drawable/button_background"
+        android:id="@+id/start_button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/button_start"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="150dp"/>
 
 </LinearLayout>
