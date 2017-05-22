@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher_round"
-        android:layout_marginBottom="48dp"/>
+        android:orientation="vertical">
 
-    <TextView
-        android:text="@string/advertisement_3"
-        android:textSize="48sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp"
+            android:src="@mipmap/ic_launcher_round" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/advertisement_3"
+            android:textSize="48sp" />
+    </LinearLayout>
 
     <Button
-        android:background="@drawable/button_background"
         android:id="@+id/start_button"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
         android:text="@string/button_start"
         android:textColor="@android:color/white"
-        android:layout_marginTop="150dp"/>
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp"/>
 
-</LinearLayout>
+</RelativeLayout>
