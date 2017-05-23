@@ -12,7 +12,7 @@ import com.example.wwk.functiondemo.R;
  * Created by wwk on 17/5/23.
  */
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     // Button of register
     private Button mRegisterButton;
@@ -27,15 +27,15 @@ public class LoginActivity extends AppCompatActivity {
     private void initializeView() {
 
         mRegisterButton = (Button) findViewById(R.id.register_button);
-        mRegisterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.register_button:
-                        startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-                        break;
-                }
-            }
-        });
+        mRegisterButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.register_button:
+                startActivity(new Intent(this, RegisterActivity.class));
+                break;
+        }
     }
 }
