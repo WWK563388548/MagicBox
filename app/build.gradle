@@ -30,4 +30,6 @@ dependencies {
 
     //TabLayout
     compile 'com.android.support:design:25.3.1'
+    // Bmob
+    compile 'cn.bmob.android:bmob-sdk:3.5.5'
 }
