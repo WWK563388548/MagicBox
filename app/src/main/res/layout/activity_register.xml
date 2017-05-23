@@ -1,6 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+        <EditText
+            android:id="@+id/edit_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"/>
+
+        <EditText
+            android:id="@+id/edit_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Age"/>
+
+        <EditText
+            android:id="@+id/edit_intro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brief introduction"
+            android:lines="3"/>
+
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/button_male"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male"/>
+
+            <RadioButton
+                android:id="@+id/button_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female"
+                android:layout_marginLeft="24dp"/>
+
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/edit_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"/>
+
+        <EditText
+            android:id="@+id/edit_password_again"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter password again"
+            android:inputType="textPassword"/>
+
+        <EditText
+            android:id="@+id/edit_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email address"
+            android:inputType="textEmailAddress"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:text="You should validate Email Address"
+            android:textSize="16sp"/>
+
+        <Button
+            android:id="@+id/register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/button_background"
+            android:text="Register"
+            android:textColor="@android:color/white"/>
 
 </LinearLayout>
