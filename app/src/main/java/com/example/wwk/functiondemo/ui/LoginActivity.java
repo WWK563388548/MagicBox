@@ -6,12 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.wwk.functiondemo.MainActivity;
 import com.example.wwk.functiondemo.R;
 import com.example.wwk.functiondemo.entity.MyUser;
+import com.example.wwk.functiondemo.utils.SharedPreferencesUtils;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.exception.BmobException;
@@ -30,6 +32,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText mInputUsername;
     private EditText mInputPassword;
     private Button mSignIn;
+    private CheckBox mSavePassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mInputPassword = (EditText) findViewById(R.id.input_password_edit);
         mSignIn = (Button) findViewById(R.id.sign_in_button);
         mSignIn.setOnClickListener(this);
+        mSavePassword = (CheckBox) findViewById(R.id.save_password);
+
+        boolean isCheck = SharedPreferencesUtils.getBoolean(this, "savePassword", false);
+        mSavePassword.setChecked(isCheck);
+
+        if (isCheck) {
+            String name = SharedPreferencesUtils.getString(this, "username", "");
+            String password = SharedPreferencesUtils.getString(this, "password", "");
+            mInputUsername.setText(name);
+            mInputPassword.setText(password);
+        }
     }
 
     @Override
@@ -88,6 +102,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Toast.makeText(this, "Inputted fields can not be empty", Toast.LENGTH_LONG).show();
                 }
                 break;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // save state
+        SharedPreferencesUtils.putBoolean(this, "savePassword", mSavePassword.isChecked());
+        // whether or not save password
+        if (mSavePassword.isChecked()) {
+            // save password
+            SharedPreferencesUtils.putString(this, "username", mInputUsername.getText().toString().trim());
+            SharedPreferencesUtils.putString(this, "password", mInputPassword.getText().toString().trim());
+        } else {
+            SharedPreferencesUtils.deleteSingleData(this, "username");
+            SharedPreferencesUtils.deleteSingleData(this, "password");
         }
     }
 }

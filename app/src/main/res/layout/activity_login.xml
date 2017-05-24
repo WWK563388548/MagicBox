@@ -34,6 +34,7 @@
         android:layout_marginRight="12dp">
         
         <CheckBox
+            android:id="@+id/save_password"
             android:layout_gravity="right"
             android:textColor="@color/colorAccent"
             android:text="Memorize password"
