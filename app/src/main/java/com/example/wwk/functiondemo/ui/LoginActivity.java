@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.wwk.functiondemo.MainActivity;
@@ -33,6 +34,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText mInputPassword;
     private Button mSignIn;
     private CheckBox mSavePassword;
+    private TextView mForgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mSignIn = (Button) findViewById(R.id.sign_in_button);
         mSignIn.setOnClickListener(this);
         mSavePassword = (CheckBox) findViewById(R.id.save_password);
+        mForgotPassword = (TextView) findViewById(R.id.forgot_password_text);
+        mForgotPassword.setOnClickListener(this);
 
         boolean isCheck = SharedPreferencesUtils.getBoolean(this, "savePassword", false);
         mSavePassword.setChecked(isCheck);
@@ -68,9 +72,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.forgot_password_text:
+                startActivity(new Intent(this, ForgotPasswordActivity.class));
+                break;
+
             case R.id.register_button:
                 startActivity(new Intent(this, RegisterActivity.class));
                 break;
+
             case R.id.sign_in_button:
                 // Get value from Input fields
                 String inputUserame = mInputUsername.getText().toString().trim();

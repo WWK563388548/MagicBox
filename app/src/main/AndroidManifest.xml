@@ -50,6 +50,10 @@
         <!-- Register -->
         <activity android:name=".ui.RegisterActivity"
             android:label="Register"/>
+
+        <!-- Forgot password -->
+        <activity android:name=".ui.ForgotPasswordActivity"
+            android:label="Forgot Password"/>
     </application>
 
 </manifest>

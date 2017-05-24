@@ -67,6 +67,7 @@
         android:layout_marginRight="12dp">
 
         <TextView
+            android:id="@+id/forgot_password_text"
             android:layout_gravity="right"
             android:textColor="@color/colorAccent"
             android:text="Forgot password"
