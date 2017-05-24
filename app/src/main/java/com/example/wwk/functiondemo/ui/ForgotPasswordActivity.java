@@ -22,6 +22,11 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
     private Button mGetEmailForChange;
     private EditText mVerifyEmail;
 
+    private EditText mNowPassword;
+    private EditText mNewPassword;
+    private EditText mNewPasswordAgain;
+    private Button mUpdatePassword;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,9 +36,16 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
     }
 
     private void initializeView() {
+
         mGetEmailForChange = (Button) findViewById(R.id.get_email_button);
         mGetEmailForChange.setOnClickListener(this);
         mVerifyEmail = (EditText) findViewById(R.id.edit_verify_email);
+
+        mNowPassword = (EditText) findViewById(R.id.edit_password_now);
+        mNewPassword = (EditText) findViewById(R.id.edit_password_new);
+        mNewPasswordAgain = (EditText) findViewById(R.id.edit_password_new_again);
+        mUpdatePassword = (Button) findViewById(R.id.update_new_password);
+        mUpdatePassword.setOnClickListener(this);
 
 
     }
@@ -42,6 +54,7 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
     public void onClick(View v) {
 
         switch (v.getId()) {
+
             case R.id.get_email_button:
                 // Get inputted email
                 final String verifyEmail = mVerifyEmail.getText().toString().trim();
@@ -62,6 +75,37 @@ public class ForgotPasswordActivity extends BaseActivity implements View.OnClick
 
                 } else {
                     Toast.makeText(this, "Email can not be empty", Toast.LENGTH_LONG).show();
+                }
+                break;
+
+            case R.id.update_new_password:
+                String nowPassword = mNowPassword.getText().toString().trim();
+                String newPassword = mNewPassword.getText().toString().trim();
+                String newPasswordAgain = mNewPasswordAgain.getText().toString().trim();
+
+                // Estimate inputted password whether or not is empty
+                if (!TextUtils.isEmpty(nowPassword) & !TextUtils.isEmpty(newPassword)
+                        & !TextUtils.isEmpty(newPasswordAgain)) {
+
+                    // Estimate inputted password twice whether or not are same
+                    if (newPassword.equals(newPasswordAgain)) {
+                        // Reset password
+                        MyUser.updateCurrentUserPassword(nowPassword, newPassword, new UpdateListener() {
+                            @Override
+                            public void done(BmobException e) {
+                                if (e == null) {
+                                    Toast.makeText(ForgotPasswordActivity.this, "Successful reset", Toast.LENGTH_LONG).show();
+                                    finish();
+                                } else {
+                                    Toast.makeText(ForgotPasswordActivity.this, "Failure to reset" + e.toString(), Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+                    } else {
+                        Toast.makeText(ForgotPasswordActivity.this, "Inputted password twice are not same", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(this, "Passwords can not be empty", Toast.LENGTH_LONG).show();
                 }
                 break;
         }
