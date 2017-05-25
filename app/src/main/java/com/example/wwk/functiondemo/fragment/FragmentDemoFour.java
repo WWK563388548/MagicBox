@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.wwk.functiondemo.R;
 import com.example.wwk.functiondemo.entity.MyUser;
+import com.example.wwk.functiondemo.ui.ExternalDialog;
 import com.example.wwk.functiondemo.ui.LoginActivity;
 import com.example.wwk.functiondemo.utils.L;
 
@@ -21,6 +23,7 @@ import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.UpdateListener;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by wwk on 17/5/18.
@@ -42,6 +45,13 @@ public class FragmentDemoFour extends Fragment implements View.OnClickListener {
 
     // button of Update profile
     private Button mUpdateProfileButton;
+    // Change image of profile
+    private CircleImageView mProfileImage;
+    private ExternalDialog mDialog;
+
+    private Button mCameraButton;
+    private Button mPictureAlbum;
+    private Button mCancelButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -66,6 +76,9 @@ public class FragmentDemoFour extends Fragment implements View.OnClickListener {
         mEditProfileAge = (EditText) view.findViewById(R.id.edit_age_profile);
         mEditProfileDescription = (EditText) view.findViewById(R.id.edit_description_profile);
 
+        mProfileImage = (CircleImageView) view.findViewById(R.id.profile_image);
+        mProfileImage.setOnClickListener(this);
+
         // Can not edit profile that is default
         setEnabled(false);
         // Set value of default
@@ -74,6 +87,19 @@ public class FragmentDemoFour extends Fragment implements View.OnClickListener {
         mEditProfileAge.setText(userInfo.getAge() + "");
         mEditProfileGender.setText(userInfo.isGender() ? "male" : "female");
         mEditProfileDescription.setText(userInfo.getIntroduction());
+
+        // Initialize dialog
+        mDialog = new ExternalDialog(getActivity(), 0, 0,
+                R.layout.dialog_set_photo, R.style.anim_style, Gravity.BOTTOM, 0);
+        // Set function of can not be cancel when click screen
+        mDialog.setCancelable(false);
+        mCameraButton = (Button) mDialog.findViewById(R.id.open_camera_button);
+        mCameraButton.setOnClickListener(this);
+        mPictureAlbum = (Button) mDialog.findViewById(R.id.get_pictures_button);
+        mPictureAlbum.setOnClickListener(this);
+        mCancelButton = (Button) mDialog.findViewById(R.id.cancel_button);
+        mCancelButton.setOnClickListener(this);
+
     }
 
     private void setEnabled(boolean is) {
@@ -149,6 +175,20 @@ public class FragmentDemoFour extends Fragment implements View.OnClickListener {
                 } else {
                     Toast.makeText(getActivity(), "Input can not be empty", Toast.LENGTH_LONG).show();
                 }
+                break;
+
+            // change profile's image
+            case R.id.profile_image:
+                mDialog.show();
+                break;
+            case R.id.cancel_button:
+                mDialog.dismiss();
+                break;
+            case R.id.open_camera_button:
+                mDialog.dismiss();
+                break;
+            case R.id.get_email_button:
+                mDialog.dismiss();
                 break;
         }
     }
