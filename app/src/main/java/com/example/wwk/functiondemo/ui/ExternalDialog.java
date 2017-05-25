@@ -14,15 +14,15 @@ import com.example.wwk.functiondemo.R;
 
 public class ExternalDialog extends Dialog {
 
-    // Define template
-    public ExternalDialog(Context context, int layout, int style) {
+    // Define templates
+    public ExternalDialog(Context context,int layout,int style) {
         this(context, WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.WRAP_CONTENT, layout, style, Gravity.CENTER);
+                WindowManager.LayoutParams.WRAP_CONTENT,layout,style, Gravity.CENTER);
     }
 
-   // Define attributes
-    public ExternalDialog(Context context, int width, int height, int layout, int style, int gravity, int anim) {
-        super(context, style);
+    // Define attributes
+    public ExternalDialog(Context context,int width,int height,int layout,int style,int gravity,int anim){
+        super(context,style);
         // Set attributes
         setContentView(layout);
         Window window = getWindow();
@@ -34,8 +34,8 @@ public class ExternalDialog extends Dialog {
         window.setWindowAnimations(anim);
     }
 
-    //  Instance
+    // Instance
     public ExternalDialog(Context context,int width,int height,int layout,int style,int gravity){
-        this(context,width,height,layout,style,gravity, R.style.anim_style);
+        this(context,width,height,layout,style,gravity,R.style.anim_style);
     }
 }

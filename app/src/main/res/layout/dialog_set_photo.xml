@@ -12,8 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/button_background"
         android:text="Camera"
-        android:textColor="@android:color/white"
-        android:textSize="?android:textAppearanceLarge"/>
+        android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/get_pictures_button"
@@ -23,8 +22,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/button_background"
         android:text="Photo Album"
-        android:textColor="@android:color/white"
-        android:textSize="?android:textAppearanceLarge"/>
+        android:textColor="@android:color/white" />
 
 
     <Button
@@ -33,8 +31,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/button_background"
         android:text="Cancel"
-        android:textColor="@android:color/white"
-        android:textSize="?android:textAppearanceLarge"/>
+        android:textColor="@android:color/white" />
 
 
 </LinearLayout>

@@ -55,7 +55,7 @@ public class FragmentDemoFour extends Fragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_demo_four, container, false);
+        View view = inflater.inflate(R.layout.fragment_demo_four, null);
         // Initialize Bmob
         Bmob.initialize(getContext(), BMOB_APP_ID);
         initializeView(view);
@@ -79,18 +79,8 @@ public class FragmentDemoFour extends Fragment implements View.OnClickListener {
         mProfileImage = (CircleImageView) view.findViewById(R.id.profile_image);
         mProfileImage.setOnClickListener(this);
 
-        // Can not edit profile that is default
-        setEnabled(false);
-        // Set value of default
-        MyUser userInfo = BmobUser.getCurrentUser(MyUser.class);
-        mEditProfileName.setText(userInfo.getUsername());
-        mEditProfileAge.setText(userInfo.getAge() + "");
-        mEditProfileGender.setText(userInfo.isGender() ? "male" : "female");
-        mEditProfileDescription.setText(userInfo.getIntroduction());
-
         // Initialize dialog
-        mDialog = new ExternalDialog(getActivity(), 0, 0,
-                R.layout.dialog_set_photo, R.style.anim_style, Gravity.BOTTOM, 0);
+        mDialog = new ExternalDialog(getActivity(), 0, 0, R.layout.dialog_set_photo, R.style.anim_style, Gravity.BOTTOM, 0);
         // Set function of can not be cancel when click screen
         mDialog.setCancelable(false);
         mCameraButton = (Button) mDialog.findViewById(R.id.open_camera_button);
@@ -99,6 +89,15 @@ public class FragmentDemoFour extends Fragment implements View.OnClickListener {
         mPictureAlbum.setOnClickListener(this);
         mCancelButton = (Button) mDialog.findViewById(R.id.cancel_button);
         mCancelButton.setOnClickListener(this);
+
+        // Can not edit profile that is default
+        setEnabled(false);
+        // Set value of default
+        MyUser userInfo = BmobUser.getCurrentUser(MyUser.class);
+        mEditProfileName.setText(userInfo.getUsername());
+        mEditProfileAge.setText(userInfo.getAge() + "");
+        mEditProfileGender.setText(userInfo.isGender() ? "male" : "female");
+        mEditProfileDescription.setText(userInfo.getIntroduction());
 
     }
 
@@ -181,13 +180,16 @@ public class FragmentDemoFour extends Fragment implements View.OnClickListener {
             case R.id.profile_image:
                 mDialog.show();
                 break;
+
             case R.id.cancel_button:
                 mDialog.dismiss();
                 break;
+
             case R.id.open_camera_button:
                 mDialog.dismiss();
                 break;
-            case R.id.get_email_button:
+
+            case R.id.get_pictures_button:
                 mDialog.dismiss();
                 break;
         }
