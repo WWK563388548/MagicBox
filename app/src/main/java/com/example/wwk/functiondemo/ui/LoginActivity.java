@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -35,6 +36,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button mSignIn;
     private CheckBox mSavePassword;
     private TextView mForgotPassword;
+    private ExternalDialog mDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         boolean isCheck = SharedPreferencesUtils.getBoolean(this, "savePassword", false);
         mSavePassword.setChecked(isCheck);
 
+        mDialog = new ExternalDialog(this, 120, 120, R.layout.dialog_loading, R.style.dialog_theme, Gravity.CENTER, R.style.anim_style);
+        // Set function of can not be cancel when click screen
+        mDialog.setCancelable(false);
+
         if (isCheck) {
             String name = SharedPreferencesUtils.getString(this, "username", "");
             String password = SharedPreferencesUtils.getString(this, "password", "");
@@ -86,6 +92,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String inputPassword = mInputPassword.getText().toString().trim();
                 // Estimate whether or not is empty
                 if (!TextUtils.isEmpty(inputUserame) & !TextUtils.isEmpty(inputPassword)) {
+                    mDialog.show();
                     // Login
                     final MyUser user = new MyUser();
                     user.setUsername(inputUserame);
@@ -94,6 +101,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         @Override
                         public void done(MyUser myUser, BmobException e) {
                             if (e == null) {
+                                mDialog.dismiss();
                                 // Estimate email whether or not is verified
                                 if (user.getEmailVerified()) {
                                     startActivity(new Intent(LoginActivity.this, MainActivity.class));

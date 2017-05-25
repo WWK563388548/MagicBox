@@ -16,4 +16,15 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+    <!-- Custom Dialog -->
+    <style name="anim_style">
+        <item name="android:windowEnterAnimation">@anim/anim_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_out</item>
+    </style>
+
+    <!-- Dialog Theme -->
+    <style name="dialog_theme" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
 </resources>
