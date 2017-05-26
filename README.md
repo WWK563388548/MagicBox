@@ -18,10 +18,12 @@ Function of reset password by verify email was realized<br>
 ### 2. Implement User's settings in Demo4
 CircleImageView: Get from https://github.com/hdodenhof/CircleImageView
 
-Function of using camera(Maxversion < android 7.0, version of 7.0 is developing)
-Function of custom dialog
-Function of open picture album
-Function of tailor pictures and set them as avatar
+Function of using camera(Maxversion < android 7.0, version of 7.0 is developing)<br>
+Function of custom dialog<br>
+Function of open picture album<br>
+Function of tailor pictures and set them as avatar<br>
+Function of exit Login<br>
 #### Screenshots of Login
 
 ![](screenshots/setAvatar.png)
+![](screenshots/exitLogin.png)
