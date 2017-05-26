@@ -1,10 +1,16 @@
 package com.example.wwk.functiondemo.fragment;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +25,10 @@ import com.example.wwk.functiondemo.entity.MyUser;
 import com.example.wwk.functiondemo.ui.ExternalDialog;
 import com.example.wwk.functiondemo.ui.LoginActivity;
 import com.example.wwk.functiondemo.utils.L;
+import com.example.wwk.functiondemo.utils.SharedPreferencesUtils;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 import cn.bmob.v3.Bmob;
@@ -27,6 +36,8 @@ import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.UpdateListener;
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.example.wwk.functiondemo.R.id.profile_image;
 
 /**
  * Created by wwk on 17/5/18.
@@ -52,6 +63,7 @@ public class FragmentDemoFour extends Fragment implements View.OnClickListener {
     private CircleImageView mProfileImage;
     private ExternalDialog mDialog;
 
+    private Button mCameraButton;
     private Button mPictureAlbum;
     private Button mCancelButton;
 
@@ -78,13 +90,26 @@ public class FragmentDemoFour extends Fragment implements View.OnClickListener {
         mEditProfileAge = (EditText) view.findViewById(R.id.edit_age_profile);
         mEditProfileDescription = (EditText) view.findViewById(R.id.edit_description_profile);
 
-        mProfileImage = (CircleImageView) view.findViewById(R.id.profile_image);
+        mProfileImage = (CircleImageView) view.findViewById(profile_image);
         mProfileImage.setOnClickListener(this);
+
+        // Get string from SharedPreferences(SharedPreferencesUtils)
+        String getImageString = SharedPreferencesUtils.getString(getActivity(), "image_title", "");
+        if (!getImageString.equals("")) {
+            // Transform string to byteArray by base64
+            byte[] byteArray = Base64.decode(getImageString, Base64.DEFAULT);
+            ByteArrayInputStream byStream = new ByteArrayInputStream(byteArray);
+            // Create bitmap
+            Bitmap bitmap = BitmapFactory.decodeStream(byStream);
+            mProfileImage.setImageBitmap(bitmap);
+        }
 
         // Initialize dialog
         mDialog = new ExternalDialog(getActivity(), 0, 0, R.layout.dialog_set_photo, R.style.anim_style, Gravity.BOTTOM, 0);
         // Set function of can not be cancel when click screen
         mDialog.setCancelable(false);
+        mCameraButton = (Button) mDialog.findViewById(R.id.open_camera_button);
+        mCameraButton.setOnClickListener(this);
         mPictureAlbum = (Button) mDialog.findViewById(R.id.get_pictures_button);
         mPictureAlbum.setOnClickListener(this);
         mCancelButton = (Button) mDialog.findViewById(R.id.cancel_button);
@@ -177,12 +202,16 @@ public class FragmentDemoFour extends Fragment implements View.OnClickListener {
                 break;
 
             // change profile's image
-            case R.id.profile_image:
+            case profile_image:
                 mDialog.show();
                 break;
 
             case R.id.cancel_button:
                 mDialog.dismiss();
+                break;
+
+            case R.id.open_camera_button:
+                openCamera();
                 break;
 
             case R.id.get_pictures_button:
@@ -191,9 +220,22 @@ public class FragmentDemoFour extends Fragment implements View.OnClickListener {
         }
     }
 
+    public static final String PHOTO_IMAGE_FILE_NAME = "fileImage.jpg";
+    public static final int CAMERA_REQUEST_CODE = 100;
     public static final int IMAGE_REQUEST_CODE = 101;
     public static final int RESULT_REQUEST_CODE = 102;
     private File tempFile = null;
+
+    //  Jump and open camera(Phone's)
+    private void openCamera() {
+
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Estimate memory whether or not is usable
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,
+                Uri.fromFile(new File(Environment.getExternalStorageDirectory(), PHOTO_IMAGE_FILE_NAME)));
+        startActivityForResult(intent, CAMERA_REQUEST_CODE);
+        mDialog.dismiss();
+    }
 
     //  Jump and open Picture Album(Phone's)
     private void openPictureAlbum() {
@@ -213,12 +255,72 @@ public class FragmentDemoFour extends Fragment implements View.OnClickListener {
                 case IMAGE_REQUEST_CODE:
                     trimPhoto(data.getData());
                     break;
+                // data of camera
+                case CAMERA_REQUEST_CODE:
+                    tempFile = new File(Environment.getExternalStorageDirectory(), PHOTO_IMAGE_FILE_NAME);
+                    trimPhoto(Uri.fromFile(tempFile));
+                    break;
+
+                case RESULT_REQUEST_CODE:
+                    if (data != null) {
+                        // Get setting of image
+                        setImageToView(data);
+                       // delete image before
+                        if (tempFile != null) {
+                            tempFile.delete();
+                        }
+                    }
+                    break;
 
             }
         }
     }
 
     private void trimPhoto(Uri uri) {
+        if (uri == null) {
+            L.error("uri == null");
+            return;
+        }
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.setDataAndType(uri, "image/*");
+        // Set tailor
+        intent.putExtra("crop", "true");
+        // ratio of width and height
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        // quality of image
+        intent.putExtra("outputX", 320);
+        intent.putExtra("outputY", 320);
+        // send data
+        intent.putExtra("return-data", true);
+        startActivityForResult(intent, RESULT_REQUEST_CODE);
+    }
+
+    private void setImageToView(Intent data) {
+
+        Bundle bundle = data.getExtras();
+        if (bundle != null) {
+            Bitmap bitmap = bundle.getParcelable("data");
+            mProfileImage.setImageBitmap(bitmap);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // Save
+        BitmapDrawable drawable = (BitmapDrawable) mProfileImage.getDrawable();
+        Bitmap bitmap = drawable.getBitmap();
+        // Transform bitmap to output stream
+        ByteArrayOutputStream bytStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 80, bytStream);
+        // Transform output stream to string by base64
+        byte[] bytArray = bytStream.toByteArray();
+        String imageString = new String(Base64.encodeToString(bytArray, Base64.DEFAULT));
+        // Save String to SharedPreferences(SharedPreferencesUtils)
+        SharedPreferencesUtils.putString(getActivity(), "image_title", imageString);
+
 
     }
+
 }
