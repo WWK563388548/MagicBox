@@ -1,6 +1,7 @@
 package com.example.wwk.functiondemo.fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -18,6 +19,8 @@ import com.example.wwk.functiondemo.entity.MyUser;
 import com.example.wwk.functiondemo.ui.ExternalDialog;
 import com.example.wwk.functiondemo.ui.LoginActivity;
 import com.example.wwk.functiondemo.utils.L;
+
+import java.io.File;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
@@ -49,7 +52,6 @@ public class FragmentDemoFour extends Fragment implements View.OnClickListener {
     private CircleImageView mProfileImage;
     private ExternalDialog mDialog;
 
-    private Button mCameraButton;
     private Button mPictureAlbum;
     private Button mCancelButton;
 
@@ -83,8 +85,6 @@ public class FragmentDemoFour extends Fragment implements View.OnClickListener {
         mDialog = new ExternalDialog(getActivity(), 0, 0, R.layout.dialog_set_photo, R.style.anim_style, Gravity.BOTTOM, 0);
         // Set function of can not be cancel when click screen
         mDialog.setCancelable(false);
-        mCameraButton = (Button) mDialog.findViewById(R.id.open_camera_button);
-        mCameraButton.setOnClickListener(this);
         mPictureAlbum = (Button) mDialog.findViewById(R.id.get_pictures_button);
         mPictureAlbum.setOnClickListener(this);
         mCancelButton = (Button) mDialog.findViewById(R.id.cancel_button);
@@ -185,13 +185,40 @@ public class FragmentDemoFour extends Fragment implements View.OnClickListener {
                 mDialog.dismiss();
                 break;
 
-            case R.id.open_camera_button:
-                mDialog.dismiss();
-                break;
-
             case R.id.get_pictures_button:
-                mDialog.dismiss();
+                openPictureAlbum();
                 break;
         }
+    }
+
+    public static final int IMAGE_REQUEST_CODE = 101;
+    public static final int RESULT_REQUEST_CODE = 102;
+    private File tempFile = null;
+
+    //  Jump and open Picture Album(Phone's)
+    private void openPictureAlbum() {
+
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, IMAGE_REQUEST_CODE);
+        mDialog.dismiss();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (resultCode != getActivity().RESULT_CANCELED) {
+            switch (requestCode) {
+                // data of picture's album
+                case IMAGE_REQUEST_CODE:
+                    trimPhoto(data.getData());
+                    break;
+
+            }
+        }
+    }
+
+    private void trimPhoto(Uri uri) {
+
     }
 }
