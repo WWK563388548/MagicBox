@@ -33,7 +33,7 @@ public class LaunchActivity extends AppCompatActivity{
                 case HANDLER_LAUNCH:
                     // Estimate app that is it being launched for the first time
                     if (isFirst()) {
-                        startActivity(new Intent(LaunchActivity.this, GuideActivity.class));
+                        startActivity(new Intent(LaunchActivity.this, LoginActivity.class));
                     } else {
                         startActivity(new Intent(LaunchActivity.this, LoginActivity.class));
                     }
