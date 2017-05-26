@@ -31,7 +31,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
-import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.UpdateListener;
@@ -47,8 +46,7 @@ import static com.example.wwk.functiondemo.R.id.profile_image;
 
 public class FragmentDemoFour extends Fragment implements View.OnClickListener {
 
-    // Bmob's Key
-    public static final String BMOB_APP_ID = "4d345003be01bddf52e5e1bfbe0f2ea2";
+
     private Button mExitLoginButton;
     private TextView mEditProfileText;
 
@@ -70,8 +68,7 @@ public class FragmentDemoFour extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_demo_four, null);
-        // Initialize Bmob
-        Bmob.initialize(getContext(), BMOB_APP_ID);
+
         initializeView(view);
         return view;
     }
