@@ -9,19 +9,10 @@ import cn.bmob.v3.BmobUser;
 
 public class MyUser extends BmobUser{
 
-    private String username;
     private int age;
     private boolean gender;
     private String introduction;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
+    
     public int getAge() {
         return age;
     }

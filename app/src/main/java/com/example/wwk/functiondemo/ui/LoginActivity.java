@@ -110,6 +110,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     Toast.makeText(LoginActivity.this, "Please validate your email address ", Toast.LENGTH_LONG).show();
                                 }
                             } else {
+
                                 Toast.makeText(LoginActivity.this, "Failure to login: " + e.toString(), Toast.LENGTH_LONG).show();
                             }
                         }
