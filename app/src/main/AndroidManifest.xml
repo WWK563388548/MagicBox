@@ -53,6 +53,10 @@
         <!-- Forgot password -->
         <activity android:name=".ui.ForgotPasswordActivity"
             android:label="Forgot Password"/>
+
+        <!-- Inquiry Logistics -->
+        <activity android:name=".ui.LogisticsActivity"
+            android:label="Logistics"/>
     </application>
 
 </manifest>

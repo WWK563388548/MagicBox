@@ -17,6 +17,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
 }
 
 dependencies {
@@ -34,4 +38,6 @@ dependencies {
     compile 'cn.bmob.android:bmob-sdk:3.5.5'
     // circleimageview from https://github.com/hdodenhof/CircleImageView
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    // Rxvolley
+    compile 'com.kymjs.rxvolley:rxvolley:1.1.4'
 }
