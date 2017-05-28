@@ -23,6 +23,7 @@ Function of custom dialog<br>
 Function of open picture album<br>
 Function of tailor pictures and set them as avatar<br>
 Function of exit Login<br>
+Function of inquiry Logistics' information when users click area of Logistics<br>
 #### Screenshots of Login
 
 ![](screenshots/setAvatar.png)
