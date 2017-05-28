@@ -9,9 +9,19 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.wwk.functiondemo.R;
+import com.example.wwk.functiondemo.adapter.LogisticsAdapter;
+import com.example.wwk.functiondemo.entity.LogisticsData;
 import com.example.wwk.functiondemo.utils.L;
 import com.kymjs.rxvolley.RxVolley;
 import com.kymjs.rxvolley.client.HttpCallback;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by wwk on 17/5/27.
@@ -26,6 +36,7 @@ public class LogisticsActivity extends BaseActivity implements View.OnClickListe
     private EditText mEditExpressNumber;
     private Button mGetInforLogisticsButton;
     private ListView mLogisticsList;
+    private List<LogisticsData> mList = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,8 +74,9 @@ public class LogisticsActivity extends BaseActivity implements View.OnClickListe
                     RxVolley.get(url, new HttpCallback() {
                         @Override
                         public void onSuccess(String t) {
-                            Toast.makeText(LogisticsActivity.this, t, Toast.LENGTH_LONG).show();
                             L.information("Json: " + t);
+                            // Parse Json's data
+                            parseJson(t);
                         }
                     });
 
@@ -73,6 +85,31 @@ public class LogisticsActivity extends BaseActivity implements View.OnClickListe
                 }
 
                 break;
+        }
+    }
+
+    private void parseJson(String t) {
+        try {
+            JSONObject jsonObject = new JSONObject(t);
+            JSONObject jsonResult = jsonObject.getJSONObject("result");
+            JSONArray jsonArray = jsonResult.getJSONArray("list");
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject json = (JSONObject) jsonArray.get(i);
+
+                LogisticsData data = new LogisticsData();
+                data.setRemark(json.getString("remark"));
+                data.setZone(json.getString("zone"));
+                data.setDatetime(json.getString("datetime"));
+                mList.add(data);
+            }
+
+            // Make list to invert order
+            Collections.reverse(mList);
+            LogisticsAdapter adapter = new LogisticsAdapter(this,mList);
+            mLogisticsList.setAdapter(adapter);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 }
