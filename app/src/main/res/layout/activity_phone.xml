@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <EditText
+        android:id="@+id/input_phone_number_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter phone number"
+        android:inputType="phone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/company_image_view"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:padding="30dp"
+            android:src="@drawable/china_mobile"/>
+
+        <TextView
+            android:id="@+id/phone_result_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp"
+            android:text="Inquiring data"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <!-- Line 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/kb_button_1"
+                android:textSize="20sp"
+                android:text="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/kb_button_2"
+                android:textSize="20sp"
+                android:text="2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/kb_button_3"
+                android:textSize="20sp"
+                android:text="3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/kb_button_delete"
+                android:textSize="20sp"
+                android:text="DEL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <!-- Line 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/kb_button_4"
+                android:textSize="20sp"
+                android:text="4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/kb_button_5"
+                android:textSize="20sp"
+                android:text="5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/kb_button_6"
+                android:textSize="20sp"
+                android:text="6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/kb_button_0"
+                android:textSize="20sp"
+                android:text="0"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <!-- Line 3-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/kb_button_7"
+                android:textSize="20sp"
+                android:text="7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/kb_button_8"
+                android:textSize="20sp"
+                android:text="8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/kb_button_9"
+                android:textSize="20sp"
+                android:text="9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/kb_button_query"
+                android:textSize="20sp"
+                android:text="query"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+</LinearLayout>
