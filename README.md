@@ -16,7 +16,8 @@ Function of reset password by verify email was realized<br>
 ![](screenshots/resetpassword.png)
 
 ### 2. Implement User's settings in Demo4
-CircleImageView: Get from https://github.com/hdodenhof/CircleImageView
+CircleImageView: Get from https://github.com/hdodenhof/CircleImageView<br>
+API of logistics: https://www.juhe.cn/docs/api/id/43<br>
 
 Function of using camera(Maxversion < android 7.0, version of 7.0 is developing)<br>
 Function of custom dialog<br>
@@ -24,7 +25,18 @@ Function of open picture album<br>
 Function of tailor pictures and set them as avatar<br>
 Function of exit Login<br>
 Function of inquiry Logistics' information when users click area of Logistics<br>
-#### Screenshots of Login
+#### Screenshots of Demo4
 
 ![](screenshots/setAvatar.png)
 ![](screenshots/exitLogin.png)
+![](screenshots/logistics.png)
+
+### 3. Implement function of Chat bot in Demo1
+API of Chat bot: https://www.juhe.cn/docs/api/id/112<br>
+RxVolley: https://github.com/kymjs/RxVolley<br>
+
+Function of Chat bot<br>
+
+#### Screenshots of Demo1
+
+![](screenshots/chatbot.png)
