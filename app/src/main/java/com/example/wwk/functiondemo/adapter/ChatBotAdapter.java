@@ -20,31 +20,31 @@ import java.util.List;
 
 public class ChatBotAdapter extends BaseAdapter {
 
-    // Type of left
+    // type of left
     public static final int VALUE_LEFT_TEXT = 1;
-    // Type of right
+    // type of right
     public static final int VALUE_RIGHT_TEXT = 2;
 
     private Context mContext;
     private LayoutInflater inflater;
     private ChatBotData data;
-    private List<ChatBotData> mChatList;
+    private List<ChatBotData> mList;
 
-    public ChatBotAdapter(Context mContext, List<ChatBotData> mChatList) {
+    public ChatBotAdapter(Context mContext, List<ChatBotData> mList) {
         this.mContext = mContext;
-        this.mChatList = mChatList;
+        this.mList = mList;
         // Get service of system
         inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return mChatList.size();
+        return mList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return mChatList.get(position);
+        return mList.get(position);
     }
 
     @Override
@@ -56,20 +56,20 @@ public class ChatBotAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolderLeftText viewHolderLeftText = null;
         ViewHolderRightText viewHolderRightText = null;
-        //Get current type, and  according to this type to distinguish data of loading
+        // Get type that is need to display currently, and according to this type to distinguish load of data
         int type = getItemViewType(position);
         if (convertView == null) {
             switch (type) {
                 case VALUE_LEFT_TEXT:
                     viewHolderLeftText = new ViewHolderLeftText();
                     convertView = inflater.inflate(R.layout.left_item_chat, null);
-                    viewHolderLeftText.mChatTextLeft = (TextView) convertView.findViewById(R.id.chat_left_text_view);
+                    viewHolderLeftText.mLeftText = (TextView) convertView.findViewById(R.id.chat_left_text_view);
                     convertView.setTag(viewHolderLeftText);
                     break;
                 case VALUE_RIGHT_TEXT:
                     viewHolderRightText = new ViewHolderRightText();
                     convertView = inflater.inflate(R.layout.right_item_chat, null);
-                    viewHolderRightText.mChatTextRight = (TextView) convertView.findViewById(R.id.chat_right_text_view);
+                    viewHolderRightText.mRightText = (TextView) convertView.findViewById(R.id.chat_right_text_view);
                     convertView.setTag(viewHolderRightText);
                     break;
             }
@@ -84,41 +84,41 @@ public class ChatBotAdapter extends BaseAdapter {
             }
         }
 
-        // Set data
-        ChatBotData data = mChatList.get(position);
+        // Set value
+        ChatBotData data = mList.get(position);
         switch (type){
             case VALUE_LEFT_TEXT:
-                viewHolderLeftText.mChatTextLeft.setText(data.getTextOfChat());
+                viewHolderLeftText.mLeftText.setText(data.getTextOfChat());
                 break;
             case VALUE_RIGHT_TEXT:
-                viewHolderRightText.mChatTextRight.setText(data.getTextOfChat());
+                viewHolderRightText.mRightText.setText(data.getTextOfChat());
                 break;
         }
-
         return convertView;
     }
 
-    // According to position of data to decide how to returns(display) item
+    // Return item that is need to display according to position
     @Override
     public int getItemViewType(int position) {
-        ChatBotData data = mChatList.get(position);
+        ChatBotData data = mList.get(position);
         int type = data.getType();
         return type;
     }
 
+    // Return all of data of layout
     @Override
     public int getViewTypeCount() {
-        return mChatList.size() + 1; // 3 ?
+        return 3; //mList.size + 1
     }
 
-    // Left text of chat
+    // Text of left
     class ViewHolderLeftText {
-        private TextView mChatTextLeft;
+        private TextView mLeftText;
     }
 
-    // Right text of chat
+    // Text of right
     class ViewHolderRightText {
-        private TextView mChatTextRight;
+        private TextView mRightText;
     }
 
 }

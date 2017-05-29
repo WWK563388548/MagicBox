@@ -8,12 +8,12 @@
     android:orientation="vertical">
 
     <ListView
-        android:dividerHeight="0dip"
-        android:scrollbars="none"
+        android:dividerHeight="2dp"
         android:id="@+id/mChatListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:divider="@android:color/transparent"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/et_text"
+            android:id="@+id/input_message_edit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -30,7 +30,7 @@
             android:inputType="text"/>
 
         <Button
-            android:id="@+id/btn_send"
+            android:id="@+id/send_message_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
