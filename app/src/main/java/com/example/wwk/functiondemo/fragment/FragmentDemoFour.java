@@ -25,6 +25,7 @@ import com.example.wwk.functiondemo.entity.MyUser;
 import com.example.wwk.functiondemo.ui.ExternalDialog;
 import com.example.wwk.functiondemo.ui.LoginActivity;
 import com.example.wwk.functiondemo.ui.LogisticsActivity;
+import com.example.wwk.functiondemo.ui.PhoneActivity;
 import com.example.wwk.functiondemo.utils.L;
 import com.example.wwk.functiondemo.utils.SharedPreferencesUtils;
 
@@ -66,8 +67,10 @@ public class FragmentDemoFour extends Fragment implements View.OnClickListener {
     private Button mPictureAlbum;
     private Button mCancelButton;
 
-    // inquire information of Logistics
+    // Inquiry information of Logistics
     private TextView mLogisticsView;
+    // Inquiry information of phone number
+    private TextView mPhoneNumberView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -87,6 +90,8 @@ public class FragmentDemoFour extends Fragment implements View.OnClickListener {
         mUpdateProfileButton.setOnClickListener(this);
         mLogisticsView = (TextView) view.findViewById(R.id.Logistics_view);
         mLogisticsView.setOnClickListener(this);
+        mPhoneNumberView = (TextView) view.findViewById(R.id.phone_number_inquiry);
+        mPhoneNumberView.setOnClickListener(this);
 
         mEditProfileName = (EditText) view.findViewById(R.id.edit_username_profile);
         mEditProfileGender = (EditText) view.findViewById(R.id.edit_gender_profile);
@@ -223,6 +228,10 @@ public class FragmentDemoFour extends Fragment implements View.OnClickListener {
 
             case R.id.Logistics_view:
                 startActivity(new Intent(getActivity(), LogisticsActivity.class));
+                break;
+
+            case R.id.phone_number_inquiry:
+                startActivity(new Intent(getActivity(), PhoneActivity.class));
                 break;
         }
     }

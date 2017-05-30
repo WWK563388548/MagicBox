@@ -57,6 +57,10 @@
         <!-- Inquiry Logistics -->
         <activity android:name=".ui.LogisticsActivity"
             android:label="Logistics"/>
+
+        <!-- Inquiry Phone number's information -->
+        <activity android:name=".ui.PhoneActivity"
+            android:label="Phone Number"/>
     </application>
 
 </manifest>
