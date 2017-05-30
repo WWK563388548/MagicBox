@@ -7,8 +7,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.wwk.functiondemo.R;
+import com.example.wwk.functiondemo.utils.L;
+import com.kymjs.rxvolley.RxVolley;
+import com.kymjs.rxvolley.client.HttpCallback;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by wwk on 17/5/29.
@@ -18,6 +25,7 @@ import com.example.wwk.functiondemo.R;
 
 public class PhoneActivity extends BaseActivity implements View.OnClickListener {
 
+    public static final String PHONE_INFOR_KEY = "fbc1d484714d9123a4b9d4ec8d2aa077";
     // Input field
     private EditText mInputNumber;
     // Logo
@@ -26,6 +34,8 @@ public class PhoneActivity extends BaseActivity implements View.OnClickListener 
     private TextView mPhoneResult;
     private Button mButton1, mButton2, mButton3, mButton4, mButton5, mButton6,
             mButton7, mButton8, mButton9, mButton0, mButtonDelete, mButtonQuery;
+
+    private boolean flag = false;
 
 
     @Override
@@ -94,6 +104,13 @@ public class PhoneActivity extends BaseActivity implements View.OnClickListener 
             case R.id.kb_button_8:
             case R.id.kb_button_9:
             case R.id.kb_button_0:
+
+                if (flag) {
+                    flag = false;
+                    inputString = "";
+                    mInputNumber.setText("");
+                }
+
                 // Add number when you click keyboard
                 mInputNumber.setText(inputString + ((Button) v).getText());
                 // Move cursor
@@ -112,6 +129,8 @@ public class PhoneActivity extends BaseActivity implements View.OnClickListener 
             case R.id.kb_button_query:
                 if (!TextUtils.isEmpty(inputString)) {
                     getPhoneNumberInfor(inputString);
+                } else {
+                    Toast.makeText(this, "Input can not be empty", Toast.LENGTH_LONG).show();
                 }
                 break;
         }
@@ -120,6 +139,47 @@ public class PhoneActivity extends BaseActivity implements View.OnClickListener 
 
     // Get information of phone number
     private void getPhoneNumberInfor(String inputString) {
+        String url = "http://apis.juhe.cn/mobile/get?phone=" + inputString + "&key=" + PHONE_INFOR_KEY;
+        RxVolley.get(url, new HttpCallback() {
+            @Override
+            public void onSuccess(String t) {
+                L.information("Information:" + t);
+                parsingJson(t);
+            }
+        });
+    }
+
+    // Parse data of Json
+    private void parsingJson(String t) {
+        try {
+            JSONObject jsonObject = new JSONObject(t);
+            JSONObject jsonResult = jsonObject.getJSONObject("result");
+            String province = jsonResult.getString("province");
+            String city = jsonResult.getString("city");
+            String areacode = jsonResult.getString("areacode");
+            String zip = jsonResult.getString("zip");
+            String company = jsonResult.getString("company");
+            mPhoneResult.setText("Local:" + province + city + "\n"
+                    + "Areacode:" + areacode + "\n"
+                    + "Zipcode:" + zip + "\n"
+                    + "Operator:" + company);
+
+            // Displays logo of Operators
+            switch (company) {
+                case "移动":
+                    mCompanyLogo.setBackgroundResource(R.drawable.china_mobile);
+                    break;
+                case "联通":
+                    mCompanyLogo.setBackgroundResource(R.drawable.china_unicom);
+                    break;
+                case "电信":
+                    mCompanyLogo.setBackgroundResource(R.drawable.china_telecom);
+                    break;
+            }
+            flag = true;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
 
