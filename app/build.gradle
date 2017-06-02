@@ -40,4 +40,6 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     // Rxvolley
     compile 'com.kymjs.rxvolley:rxvolley:1.1.4'
+    // RecyclerView
+    compile 'com.android.support:recyclerview-v7:25.3.1'
 }

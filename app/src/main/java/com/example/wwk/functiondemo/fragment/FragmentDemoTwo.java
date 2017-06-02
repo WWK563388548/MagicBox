@@ -1,15 +1,18 @@
 package com.example.wwk.functiondemo.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.wwk.functiondemo.R;
 import com.example.wwk.functiondemo.adapter.NewsAdapter;
 import com.example.wwk.functiondemo.entity.NewsData;
+import com.example.wwk.functiondemo.ui.WebViewActivity;
 import com.example.wwk.functiondemo.utils.L;
 import com.kymjs.rxvolley.RxVolley;
 import com.kymjs.rxvolley.client.HttpCallback;
@@ -32,6 +35,10 @@ public class FragmentDemoTwo extends Fragment {
     public static final String NEWS_KEY = "3065c847ddb881f825b59ae339a92b66";
     private ListView mNewsListView;
     private List<NewsData> newsList = new ArrayList<>();
+    // Title of news
+    private List<String> mListTitle = new ArrayList<>();
+    // Url of news
+    private List<String> mListUrl = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,7 +60,16 @@ public class FragmentDemoTwo extends Fragment {
             }
         });
 
-
+        mNewsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                L.information("Position: " + position);
+                Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                intent.putExtra("title", mListTitle.get(position));
+                intent.putExtra("url", mListUrl.get(position));
+                startActivity(intent);
+            }
+        });
     }
 
     private void parsingJson(String t) {
@@ -72,6 +88,8 @@ public class FragmentDemoTwo extends Fragment {
                 data.setmSource(json.getString("source"));
                 data.setmImageUrl(json.getString("firstImg"));
                 newsList.add(data);
+                mListTitle.add(newsTitle);
+                mListUrl.add(url);
             }
             NewsAdapter adapter = new NewsAdapter(getActivity(), newsList);
             mNewsListView.setAdapter(adapter);

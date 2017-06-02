@@ -61,6 +61,9 @@
         <!-- Inquiry Phone number's information -->
         <activity android:name=".ui.PhoneActivity"
             android:label="Phone Number"/>
+
+        <!-- News -->
+        <activity android:name=".ui.WebViewActivity" />
     </application>
 
 </manifest>
