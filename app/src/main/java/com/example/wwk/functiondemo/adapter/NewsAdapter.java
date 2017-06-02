@@ -1,6 +1,7 @@
 package com.example.wwk.functiondemo.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.wwk.functiondemo.R;
 import com.example.wwk.functiondemo.entity.NewsData;
+import com.example.wwk.functiondemo.utils.PicassoUtils;
 
 import java.util.List;
 
@@ -64,7 +66,10 @@ public class NewsAdapter extends BaseAdapter {
         data = mNewsList.get(position);
         viewHolder.mNewsTitle.setText(data.getmTitle());
         viewHolder.mNewsSource.setText(data.getmSource());
-
+        if(!TextUtils.isEmpty(data.getmImageUrl())){
+            // Load picture
+            PicassoUtils.loadImageViewSize(mContext, data.getmImageUrl(), 500, 250, viewHolder.mNewsImage);
+        }
         return convertView;
     }
 

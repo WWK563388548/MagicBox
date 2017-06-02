@@ -42,4 +42,6 @@ dependencies {
     compile 'com.kymjs.rxvolley:rxvolley:1.1.4'
     // RecyclerView
     compile 'com.android.support:recyclerview-v7:25.3.1'
+    // Picasso
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }
