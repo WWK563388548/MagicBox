@@ -43,3 +43,16 @@ Function of Chat bot<br>
 #### Screenshots of Demo1
 
 ![](screenshots/chatbot.png)
+
+### 4. Implement News reader in Demo2
+API of News: https://www.juhe.cn/docs/api/id/147<br>
+Picasso: http://square.github.io/picasso/<br>
+
+Function of news reader<br>
+Read news by WebView<br>
+
+#### Screenshots of Demo2
+
+![](screenshots/newsreader.png)
+![](screenshots/webview.png)
+
