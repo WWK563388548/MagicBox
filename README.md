@@ -45,6 +45,7 @@ Function of Chat bot<br>
 ![](screenshots/chatbot.png)
 
 ### 4. Implement News reader in Demo2
+RxVolley: https://github.com/kymjs/RxVolley
 API of News: https://www.juhe.cn/docs/api/id/147<br>
 Picasso: http://square.github.io/picasso/<br>
 
@@ -56,3 +57,17 @@ Read news by WebView<br>
 ![](screenshots/newsreader.png)
 ![](screenshots/webview.png)
 
+### 5. Implement gallery of pictures in Demo3
+RxVolley: https://github.com/kymjs/RxVolley<br>
+API of pictures: http://gank.io/api/search/query/listview/category/福利/count/50/page/1<br>
+PhotoView: https://github.com/chrisbanes/PhotoView<br>
+Picasso: http://square.github.io/picasso/<br>
+
+Function of gallery by API of Gank.io and Picasso<br>
+Function of zoom pictures when users click pictures by PhotoView<br>
+
+#### Screenshots of Demo3
+
+![](screenshots/Demo3.png)
+![](screenshots/ClickImage.png)
+![](screenshots/zoompicture.png)
