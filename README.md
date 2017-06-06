@@ -39,6 +39,7 @@ API of Chat bot: https://www.juhe.cn/docs/api/id/112<br>
 RxVolley: https://github.com/kymjs/RxVolley<br>
 
 Function of Chat bot<br>
+Integrated TTS of xfyun<br>
 You can chat with the chatbot by Chinese<br>
 
 #### Screenshots of Demo1
