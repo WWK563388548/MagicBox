@@ -55,4 +55,5 @@ dependencies {
     // 科大讯飞: http://www.xfyun.cn/
     compile files('libs/Msc.jar')
     compile files('libs/Sunflower.jar')
+    compile project(path: ':libzxing')
 }
