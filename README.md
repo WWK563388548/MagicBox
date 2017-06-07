@@ -37,6 +37,7 @@ Function of no attribution to inquiries<br>
 ### 3. Implement function of Chat bot in Demo1
 API of Chat bot: https://www.juhe.cn/docs/api/id/112<br>
 RxVolley: https://github.com/kymjs/RxVolley<br>
+xfyun: www.xfyun.cn
 
 Function of Chat bot<br>
 Integrated TTS of xfyun<br>
