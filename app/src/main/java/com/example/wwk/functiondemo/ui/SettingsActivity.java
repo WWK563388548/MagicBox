@@ -19,7 +19,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     private LinearLayout mScanQR;
     // Result of scan
     private TextView mScanResult;
-    // Share QR
+    // Create and share QR
     private LinearLayout mShareQR;
 
     @Override
@@ -35,6 +35,9 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         mScanQR = (LinearLayout) findViewById(R.id.scan_qr_code);
         mScanQR.setOnClickListener(this);
         mScanResult = (TextView) findViewById(R.id.scan_result);
+
+        mShareQR = (LinearLayout) findViewById(R.id.share_qr_code);
+        mShareQR.setOnClickListener(this);
     }
 
     @Override
@@ -44,6 +47,10 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
                 // Open interface of scan for scan QR code or bar code
                 Intent openCameraIntent = new Intent(this, CaptureActivity.class);
                 startActivityForResult(openCameraIntent, 0);
+                break;
+
+            case R.id.share_qr_code:
+                startActivity(new Intent(this, QrActivity.class));
                 break;
         }
     }
