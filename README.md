@@ -73,3 +73,11 @@ Function of zoom pictures when users click pictures by PhotoView<br>
 ![](screenshots/Demo3.png)
 ![](screenshots/ClickImage.png)
 ![](screenshots/zoompicture.png)
+
+### 5. Implement function of others in SettingActivity(float button)
+Custom library: https://github.com/xuyisheng/ZXingLib<br>
+
+Function of scan QR code<br>
+Function of create and share QR code<br>
+
+#### Screenshots of Setting
