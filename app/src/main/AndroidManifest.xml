@@ -76,6 +76,10 @@
 
         <!-- News -->
         <activity android:name=".ui.WebViewActivity" />
+
+        <!-- QR code -->
+        <activity android:name=".ui.QrActivity"
+            android:label="QR code"/>
     </application>
 
 </manifest>
