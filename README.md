@@ -37,6 +37,7 @@ Function of no attribution to inquiries<br>
 ### 3. Implement function of Chat bot in Demo1
 API of Chat bot: https://www.juhe.cn/docs/api/id/112<br>
 RxVolley: https://github.com/kymjs/RxVolley<br>
+xfyun: www.xfyun.cn
 
 Function of Chat bot<br>
 Integrated TTS of xfyun<br>
@@ -73,3 +74,11 @@ Function of zoom pictures when users click pictures by PhotoView<br>
 ![](screenshots/Demo3.png)
 ![](screenshots/ClickImage.png)
 ![](screenshots/zoompicture.png)
+
+### 5. Implement function of others in SettingActivity(float button)
+Custom library: https://github.com/xuyisheng/ZXingLib<br>
+
+Function of scan QR code<br>
+Function of create and share QR code<br>
+
+#### Screenshots of Setting
