@@ -60,4 +60,32 @@
 
     </LinearLayout>
 
+    <!--我的位置-->
+    <LinearLayout
+        android:id="@+id/my_location"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My location"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:id="@+id/my_location_textview" />
+
+        <TextView
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Master your location constantly"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
 </LinearLayout>

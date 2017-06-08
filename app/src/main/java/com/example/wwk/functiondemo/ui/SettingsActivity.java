@@ -21,6 +21,8 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     private TextView mScanResult;
     // Create and share QR
     private LinearLayout mShareQR;
+    // My location
+    private LinearLayout mMyLocation;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,9 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
 
         mShareQR = (LinearLayout) findViewById(R.id.share_qr_code);
         mShareQR.setOnClickListener(this);
+
+        mMyLocation = (LinearLayout) findViewById(R.id.my_location);
+        mMyLocation.setOnClickListener(this);
     }
 
     @Override
@@ -51,6 +56,10 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
 
             case R.id.share_qr_code:
                 startActivity(new Intent(this, QrActivity.class));
+                break;
+
+            case R.id.my_location:
+                startActivity(new Intent(this, LocationActivity.class));
                 break;
         }
     }
