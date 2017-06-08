@@ -82,3 +82,6 @@ Function of scan QR code<br>
 Function of create and share QR code<br>
 
 #### Screenshots of Setting
+
+![](screenshots/setting.png)
+![](screenshots/shareqr.png)
