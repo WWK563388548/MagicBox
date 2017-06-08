@@ -91,7 +91,7 @@
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="开发者 key" />
+            android:value="yOfrim2fC2DQ7bEVniGx0Tf6opotodbR" />
     </application>
 
 </manifest>
