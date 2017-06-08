@@ -25,6 +25,10 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <!--配置权限，用来记录应用配置信息 -->
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <!-- 百度地图的权限 -->
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
         android:allowBackup="true"
@@ -74,12 +78,20 @@
         <activity android:name=".ui.PhoneActivity"
             android:label="Phone Number"/>
 
+        <!-- My location -->
+        <activity android:name=".ui.LocationActivity"
+            android:label="My location"/>
+
         <!-- News -->
         <activity android:name=".ui.WebViewActivity" />
 
         <!-- QR code -->
         <activity android:name=".ui.QrActivity"
             android:label="QR code"/>
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="开发者 key" />
     </application>
 
 </manifest>
