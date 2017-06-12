@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.wwk.functiondemo.R;
+import com.example.wwk.functiondemo.utils.SharedPreferencesUtils;
 import com.xys.libzxing.zxing.activity.CaptureActivity;
 
 /**
@@ -15,6 +17,8 @@ import com.xys.libzxing.zxing.activity.CaptureActivity;
 
 public class SettingsActivity extends BaseActivity implements View.OnClickListener {
 
+    // Switch of TTS
+    private Switch mSwitch;
     // Scan QR
     private LinearLayout mScanQR;
     // Result of scan
@@ -43,11 +47,24 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
 
         mMyLocation = (LinearLayout) findViewById(R.id.my_location);
         mMyLocation.setOnClickListener(this);
+
+        mSwitch = (Switch) findViewById(R.id.speak_switch);
+        mSwitch.setOnClickListener(this);
+        boolean isSpeak = SharedPreferencesUtils.getBoolean(this, "isSpeak", false);
+        mSwitch.setChecked(isSpeak);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+
+            case R.id.speak_switch:
+                // Switch
+                mSwitch.setSelected(!mSwitch.isSelected());
+                // Save state
+                SharedPreferencesUtils.putBoolean(this, "isSpeak", mSwitch.isChecked());
+                break;
+
             case R.id.scan_qr_code:
                 // Open interface of scan for scan QR code or bar code
                 Intent openCameraIntent = new Intent(this, CaptureActivity.class);

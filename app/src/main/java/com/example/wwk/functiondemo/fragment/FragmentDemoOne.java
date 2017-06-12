@@ -15,6 +15,7 @@ import com.example.wwk.functiondemo.R;
 import com.example.wwk.functiondemo.adapter.ChatBotAdapter;
 import com.example.wwk.functiondemo.entity.ChatBotData;
 import com.example.wwk.functiondemo.utils.L;
+import com.example.wwk.functiondemo.utils.SharedPreferencesUtils;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechError;
 import com.iflytek.cloud.SpeechSynthesizer;
@@ -136,7 +137,10 @@ public class FragmentDemoOne extends Fragment implements View.OnClickListener {
     // Add text to left
     private void addLeftItem(String text) {
 
-        startSpeak(text);
+        boolean isSpeak = SharedPreferencesUtils.getBoolean(getActivity(), "isSpeak", false);
+        if (isSpeak) {
+            startSpeak(text);
+        }
 
         ChatBotData data = new ChatBotData();
         data.setType(ChatBotAdapter.VALUE_LEFT_TEXT);
