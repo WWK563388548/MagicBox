@@ -1,5 +1,4 @@
-# FunctionDemo
-## Implement some functions in a project(developing...)
+# MagicBox
 
 ### 1. Implement interface of Login by Bmob
 Bmob:https://www.bmob.cn/
